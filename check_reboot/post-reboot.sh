@@ -1,5 +1,5 @@
 #!/bin/bash
-#author vignesh ragupathy
+#author vignesh_ragupathy@yahoo.com
 
 
 service --status-all |grep running... |awk '{print $1}' > /usr/local/stats/script_RB_check/a_services
