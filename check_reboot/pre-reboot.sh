@@ -1,5 +1,5 @@
 #!/bin/bash
-#author vignesh ragupathy
+#author vignesh_ragupathy@yahoo.com
 
 mkdir -p /usr/local/stats/script_RB_check
 
