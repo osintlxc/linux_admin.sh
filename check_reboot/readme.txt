@@ -1,6 +1,6 @@
 Script to validate the system after reboot:
 
-This script will take report for the system before reboot and validate the values after reboot. 
+This script will take report from the system before reboot and validate the values after reboot. 
 
 Following values will be validated:
 -----------------------------------
