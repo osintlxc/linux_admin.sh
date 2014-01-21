@@ -85,30 +85,32 @@ if [ $? == 0 ]; then
         multipath -ll |grep failed -B 3 |grep HP |awk '{print $2}' |sed s/"("//g |sed s/")"//g > /usr/local/stats/script_RB_check/a_failed_luns
         multipath -ll |grep HP |awk '{print $2}' |sed s/"("//g |sed s/")"//g > /usr/local/stats/script_RB_check/a_all_luns
         rm -f /usr/local/stats/script_RB_check/a_active_luns
-                for lun in `cat /usr/local/stats/script_RB_check/b_all_luns`
+                for lun in `cat /usr/local/stats/script_RB_check/a_all_luns`
                 do
                 grep $lun /usr/local/stats/script_RB_check/a_failed_luns > /dev/null
                         if [ $? == 0 ]; then
                         echo " " > /dev/null
+                        #echo $lun 
                         else
                         echo $lun >> /usr/local/stats/script_RB_check/a_active_luns
                         fi
                 done
 
 
+rm -f /usr/local/stats/script_RB_check/active_lun_status.txt
         for Lun  in `cat /usr/local/stats/script_RB_check/b_active_luns`
         do
         grep $Lun /usr/local/stats/script_RB_check/a_active_luns > /dev/null
                 if [ $? == 0 ]; then
-                echo 1 > /usr/local/stats/script_RB_check/active_lun_status.txt
+                echo 1 >> /usr/local/stats/script_RB_check/active_lun_status.txt
                 else
-                echo Lun $Lun is missing
+                echo Lun $Lun is missing or failed
                 echo 0 > /usr/local/stats/script_RB_check/active_lun_status.txt
                 fi
         done
 
-        grep 1 /usr/local/stats/script_RB_check/active_lun_status.txt > /dev/null
-                if [ $? == 0 ]; then
+        grep 0 /usr/local/stats/script_RB_check/active_lun_status.txt > /dev/null
+                if [ $? != 0 ]; then
                 echo All LUNS are active as before reboot
                 fi
 
