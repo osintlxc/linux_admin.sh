@@ -80,7 +80,7 @@ grep 0 /usr/local/stats/script_RB_check/sysctl_status.txt > /dev/nul
 
 
 
-which multipath 2> /dev/null
+which multipath &> /dev/null
 if [ $? == 0 ]; then
         multipath -ll |grep failed -B 3 |grep HP |awk '{print $2}' |sed s/"("//g |sed s/")"//g > /usr/local/stats/script_RB_check/a_failed_luns
         multipath -ll |grep HP |awk '{print $2}' |sed s/"("//g |sed s/")"//g > /usr/local/stats/script_RB_check/a_all_luns
