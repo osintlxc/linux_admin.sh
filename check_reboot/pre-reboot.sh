@@ -24,7 +24,7 @@ df -Ph |awk '{print $NF}' |sed -n 2,100p > /usr/local/stats/script_RB_check/b_mo
 sysctl -a |grep -v kernel.random.uuid |grep -v random.entropy_avail |grep -v fs.inode |grep -v fs.dentry-state |perl -lape 's/\s+//sg'  > /usr/local/stats/script_RB_check/b_sysctlvalues
 
 ##check multipath##
-which multipath 2> /dev/null
+which multipath &> /dev/null
 if [ $? == 0 ]; then
         multipath -ll |grep failed -B 3 |grep HP |awk '{print $2}' |sed s/"("//g |sed s/")"//g > /usr/local/stats/script_RB_check/b_failed_luns
         multipath -ll |grep HP |awk '{print $2}' |sed s/"("//g |sed s/")"//g > /usr/local/stats/script_RB_check/b_all_luns
