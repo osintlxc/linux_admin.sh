@@ -96,7 +96,7 @@ if [ $? == 0 ]; then
                 done
 
 
-        for $Lun  in `cat /usr/local/stats/script_RB_check/b_active_luns`
+        for Lun  in `cat /usr/local/stats/script_RB_check/b_active_luns`
         do
         grep $Lun /usr/local/stats/script_RB_check/a_active_luns > /dev/null
                 if [ $? == 0 ]; then
@@ -113,7 +113,7 @@ if [ $? == 0 ]; then
                 fi
 
 
-        for $Lun  in `cat /usr/local/stats/script_RB_check/a_active_luns`
+        for Lun  in `cat /usr/local/stats/script_RB_check/a_active_luns`
         do
         grep $Lun /usr/local/stats/script_RB_check/b_active_luns > /dev/null
                 if [ $? == 0 ]; then
